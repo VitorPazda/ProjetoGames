@@ -1,8 +1,8 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/database');
 
-const Games = sequelize.define('Games', {
-    idGame: {
+const Releases = sequelize.define('Releases', {
+    idRelease: {
         type:   DataTypes.INTEGER,
         primaryKey:     true,
         autoIncrement: true,
@@ -18,12 +18,12 @@ const Games = sequelize.define('Games', {
         allowNull: false,
     },
 
-    genre: {
+    game: {
         type: DataTypes.STRING,
         allowNull: false,
     },
 
-    image_url: {
+    date: {
         type: DataTypes.STRING,
         allowNull: false,
     },
