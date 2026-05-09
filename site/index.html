@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeSchool | Formando Desenvolvedores</title>
+
+    <!-- 1. Google Fonts: Fonte principal do site (Inter) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+
+    <!-- 2. Phosphor Icons via CDN (Biblioteca de Ícones moderna e leve) -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <!-- 3. Arquivo CSS Principal -->
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+
+<body>
+
+    <!-- =========================
+         CABEÇALHO (HEADER & NAV)
+         ========================= -->
+    <header class="header">
+        <div class="container header-container">
+            <!-- Logo -->
+            <a href="#" class="logo">
+                <i class="ph ph-terminal-window"></i> CodeSchool
+            </a>
+
+            <!-- Menu Principal -->
+            <nav class="nav" id="nav">
+                <ul class="nav-list">
+                    <li><a href="#home" class="nav-link">Home</a></li>
+                    <li><a href="#cursos" class="nav-link">Cursos</a></li>
+                    <li><a href="#numeros" class="nav-link">Sobre</a></li>
+                    <li><a href="#noticias" class="nav-link">Notícias</a></li>
+                    <li><a href="#eventos" class="nav-link">Eventos</a></li>
+                    <li><a href="#contato" class="nav-link">Contato</a></li>
+                </ul>
+            </nav>
+
+            <!-- Ações (Troca de Tema e Matrícula) -->
+            <div class="header-actions">
+                <button id="theme-toggle" class="icon-btn" aria-label="Trocar Tema">
+                    <!-- O ícone começa como Sol ou Lua dependendo do script JS -->
+                    <i class="ph ph-moon"></i>
+                </button>
+                <a href="#contato" class="btn btn-primary d-none-mobile">Matricule-se</a>
+
+                <!-- Botão Menu Mobile (Hamburguer) -->
+                <button class="icon-btn menu-btn" id="menu-btn" aria-label="Abrir Menu">
+                    <i class="ph ph-list"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- =========================
+             BANNER ROTATIVO (HERO)
+             ========================= -->
+        <section id="home" class="hero">
+            <div class="carousel" id="carousel">
+
+                <!-- Slide 1 -->
+                <div class="carousel-slide active">
+                    <!-- Usamos imagens do Unsplash como placeholders de alta qualidade -->
+                    <img src="img/slide01.jpg" alt="Programação" class="carousel-bg">
+                    <div class="carousel-content container">
+                        <h1>Sua jornada na tecnologia começa aqui</h1>
+                        <p>Aprenda do zero ao avançado com profissionais atuantes no mercado.</p>
+                        <a href="#cursos" class="btn btn-primary">Ver Formações</a>
+                    </div>
+                </div>
+
+                <!-- Slide 2 -->
+                <div class="carousel-slide">
+                    <img src="img/slide02.jpg" alt="Equipe colaborando" class="carousel-bg">
+                    <div class="carousel-content container">
+                        <h1>Estude em um ambiente totalmente colaborativo</h1>
+                        <p>Metodologia focada em projetos práticos e pair programming.</p>
+                        <a href="#contato" class="btn btn-primary">Agende uma Visita</a>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Controles do Banner -->
+            <button class="carousel-control prev" id="btn-prev" aria-label="Slide anterior">
+                <i class="ph ph-caret-left"></i>
+            </button>
+            <button class="carousel-control next" id="btn-next" aria-label="Próximo slide">
+                <i class="ph ph-caret-right"></i>
+            </button>
+        </section>
+
+        <!-- =========================
+             SEÇÃO: CURSOS
+             ========================= -->
+        <section id="cursos" class="section bg-alt">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Nossas Formações</h2>
+                    <div class="line"></div>
+                    <p>Trilhas de aprendizado desenhadas para suprir as demandas da indústria atual.</p>
+                </div>
+
+                <!-- Usaremos CSS Grid aqui para criar cards que se ajustam sozinhos -->
+                <div class="grid grid-cards" id="formations-container">
+                    <p>Carregando formações...</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- =========================
+             SEÇÃO: NÚMEROS (CONTADORES ANIMADOS)
+             ========================= -->
+        <section id="numeros" class="section stats-section">
+            <div class="container">
+                <div class="section-title title-light">
+                    <h2>Impacto CodeSchool</h2>
+                    <div class="line"></div>
+                </div>
+
+                <div class="grid grid-stats">
+                    <!-- Os atributos data-target serão lidos pelo JavaScript para fazer a animação -->
+                    <div class="stat-box">
+                        <i class="ph ph-student"></i>
+                        <span class="stat-num" data-target="2500">0</span>
+                        <p>Alunos Formados</p>
+                    </div>
+                    <div class="stat-box">
+                        <i class="ph ph-books"></i>
+                        <span class="stat-num" data-target="35">0</span>
+                        <p>Cursos Ativos</p>
+                    </div>
+                    <div class="stat-box">
+                        <i class="ph ph-buildings"></i>
+                        <span class="stat-num" data-target="6">0</span>
+                        <p>Campuses Físicos</p>
+                    </div>
+                    <div class="stat-box">
+                        <i class="ph ph-handshake"></i>
+                        <span class="stat-num" data-target="400">0</span>
+                        <p>Empresas Parceiras</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =========================
+             SEÇÃO: NOTÍCIAS E EVENTOS
+             ========================= -->
+        <!-- Essa seção é dividida em duas grandes colunas (Notícias à esquerda, Eventos à direita) -->
+        <section id="noticias-eventos" class="section">
+            <div class="container grid dual-layout">
+
+                <!-- Coluna 1: Notícias -->
+                <div class="news-container" id="noticias">
+                    <h3 class="box-title">Recentes no Blog</h3>
+                    <div id="news-container-inner">
+                        <p>Carregando notícias...</p>
+                    </div>
+                </div>
+
+                <!-- Coluna 2: Eventos -->
+                <div class="events-container" id="eventos">
+                    <h3 class="box-title">Próximos Eventos</h3>
+                    <div id="events-container-inner">
+                        <p>Carregando eventos...</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- =========================
+             SEÇÃO: CONTATO
+             ========================= -->
+        <section id="contato" class="section bg-alt">
+            <div class="container grid contact-layout">
+
+                <div class="contact-info">
+                    <h2>Pronto para programar?</h2>
+                    <p>Nossa equipe comercial está pronta para tirar todas as suas dúvidas sobre currículo, matrizes
+                        curriculares e opções de financiamento.</p>
+
+                    <ul class="contact-list">
+                        <li><i class="ph ph-envelope-simple"></i> contato@codeschool.edu.br</li>
+                        <li><i class="ph ph-phone"></i> (11) 9999-0000</li>
+                        <li><i class="ph ph-buildings"></i> Av. Tecnológica, 1024 - São Paulo, SP</li>
+                    </ul>
+                </div>
+
+                <div class="contact-form">
+                    <!-- Previne recarregamento com (onsubmit="return false;") só para a página não piscar vazia -->
+                    <form onsubmit="return false;">
+                        <div class="input-group">
+                            <label for="nome">Como devemos te chamar?</label>
+                            <input type="text" id="nome" placeholder="Seu nome completo" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="email">E-mail para contato</label>
+                            <input type="email" id="email" placeholder="seu.melhor@email.com" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="msg">Mensagem</label>
+                            <textarea id="msg" rows="4" placeholder="Quero saber mais sobre o curso de..."
+                                required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-full">Enviar Mensagem</button>
+                    </form>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- =========================
+         RODAPÉ (FOOTER)
+         ========================= -->
+    <footer class="footer">
+        <div class="container grid footer-grid">
+            <div class="brand-col">
+                <a href="#" class="logo text-light">
+                    <i class="ph ph-terminal-window"></i> CodeSchool
+                </a>
+                <p>Educação técnica de alto nível para construir as tecnologias de amanhã.</p>
+            </div>
+
+            <div class="link-col">
+                <h4>Navegação</h4>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#cursos">Nossos Cursos</a></li>
+                    <li><a href="#numeros">Impacto Institucional</a></li>
+                </ul>
+            </div>
+
+            <div class="link-col">
+                <h4>Comunidade</h4>
+                <ul>
+                    <li><a href="#noticias">Blog & Notícias</a></li>
+                    <li><a href="#eventos">Agenda de Eventos</a></li>
+                    <li><a href="#contato">Fale Conosco</a></li>
+                </ul>
+            </div>
+
+            <div class="social-col">
+                <h4>Acompanhe</h4>
+                <div class="social-links">
+                    <a href="#"><i class="ph ph-instagram-logo"></i></a>
+                    <a href="#"><i class="ph ph-linkedin-logo"></i></a>
+                    <a href="#"><i class="ph ph-github-logo"></i></a>
+                    <a href="#"><i class="ph ph-youtube-logo"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 CodeSchool. Projeto construído apenas com HTML, CSS e JS Puros.</p>
+        </div>
+    </footer>
+
+    <!-- Importação do arquivo JavaScript -->
+    <script src="js/script.js"></script>
+</body>
+
+</html>
