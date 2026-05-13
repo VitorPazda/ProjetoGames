@@ -44,7 +44,7 @@ module.exports = {
      * Esse caminho funciona como URL porque o express.static serve a pasta public/.
      */
     async store(req, res) {
-        const { title, description, genre, image_url } = req.body;
+        const { title, description, genre } = req.body;
 
         try {
             // Verificamos se o arquivo foi enviado pelo Multer
