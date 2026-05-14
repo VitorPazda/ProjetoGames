@@ -29,4 +29,4 @@ const Releases = sequelize.define('Releases', {
     },
 });
 
-module.exports = Games;
+module.exports = Releases;
