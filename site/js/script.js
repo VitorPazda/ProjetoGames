@@ -261,7 +261,7 @@ document.addEventListener('DOMContentLoaded', () => {
         .catch(err => console.error('Erro ao carregar formações:', err));
 
     // ── 5.2 Notícias do Blog ───────────────────────────────────────────────────
-    axios.get(`${API_URL}/news`)
+    axios.get(`${API_URL}/release`)
         .then(resposta => {
             const container = document.getElementById('news-container-inner');
             const dados     = resposta.data;
@@ -273,14 +273,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
-            dados.forEach(noticia => {
+            dados.forEach(release => {
                 container.innerHTML += `
                     <article class="news-item">
-                        <img src="${API_URL}${noticia.image_url}" alt="${noticia.title}" class="news-img">
                         <div class="news-text">
-                            <h4>${noticia.title}</h4>
-                            <span class="news-date">${noticia.date}</span>
-                            <p>${noticia.description}</p>
+                            <h4>${release.title}</h4>
+                            <span class="news-date">${release.date}</span>
+                            <p>${release.game}</p>
+                            <p>${release.description}</p>
                         </div>
                     </article>
                 `;
