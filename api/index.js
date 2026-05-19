@@ -22,7 +22,7 @@ const sequelize  = require('./src/config/database'); // Nossa conexão configura
 //const authRoutes      = require('./src/routes/authRoutes');
 const gameRoutes        = require('./src/routes/gameRoutes');
 const releaseRoutes     = require('./src/routes/releaseRoutes');
-
+const publisherRoutes   = require('./src/routes/publisherRoutes');
 // ─── Criação do App Express ──────────────────────────────────────────────────
 
 const app = express();
@@ -45,6 +45,7 @@ app.use(express.static('public'));
 //app.use(authRoutes);       // POST /login
 app.use(gameRoutes);        // GET/POST/DELETE /formations
 app.use(releaseRoutes);        // GET/POST/DELETE /formations
+app.use(publisherRoutes);        // GET/POST/DELETE /formations
 
 // ─── Porta do Servidor ────────────────────────────────────────────────────────
 

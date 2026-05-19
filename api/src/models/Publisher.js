@@ -1,32 +1,22 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/database');
 
-const Game = sequelize.define('Games', {
-    idGame: {
+const Publisher = sequelize.define('Publisher', {
+    idPublisher: {
         type:   DataTypes.INTEGER,
         primaryKey:     true,
         autoIncrement: true,
     },
 
-    title: {
+    name: {
         type: DataTypes.STRING,
         allowNull: false
     },
 
-    description: {
+    country: {
         type: DataTypes.STRING,
         allowNull: false,
-    },
-
-    genre: {
-        type: DataTypes.STRING,
-        allowNull: false,
-    },
-
-    image_url: {
-        type: DataTypes.STRING,
-        allowNull: false,
-    },
+    }
 });
 
-module.exports = Game;
+module.exports = Publisher;
