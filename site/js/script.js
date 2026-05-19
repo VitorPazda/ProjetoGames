@@ -203,7 +203,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const API_URL = 'http://localhost:3000';
 
-    // ── 5.1 Formações ──────────────────────────────────────────────────────────
+    // ── 5.1 Jogo ──────────────────────────────────────────────────────────
     axios.get(`${API_URL}/game`)
         .then(resposta => {
             const container = document.getElementById('formations-container');
@@ -232,6 +232,33 @@ document.addEventListener('DOMContentLoaded', () => {
         })
         .catch(err => console.error('Erro ao carregar formações:', err));
 
+
+    // ── 5.1 Formações ──────────────────────────────────────────────────────────
+    axios.get(`${API_URL}/publisher`)
+        .then(resposta => {
+            const container = document.getElementById('publishers-container');
+            const dados     = resposta.data; // array de formações vindos da API
+
+            // Limpa o texto "Carregando..."
+            container.innerHTML = '';
+
+            if (dados.length === 0) {
+                container.innerHTML = '<p>Nenhuma empresa cadastrada ainda.</p>';
+                return;
+            }
+
+            // Para cada formação, criamos um "card" com o mesmo HTML do site original
+            dados.forEach(publisher => {
+                container.innerHTML += `
+                    <article class="card">  
+                        <h3>${publisher.name}</h3>
+                        <p>${publisher.country}</p>
+                        <a href="#" class="btn btn-outline">Detalhes</a>
+                    </article>
+                `;
+            });
+        })
+        .catch(err => console.error('Erro ao carregar formações:', err));
 
     // ── 5.2 Notícias do Blog ───────────────────────────────────────────────────
     axios.get(`${API_URL}/news`)
