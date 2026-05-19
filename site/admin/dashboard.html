@@ -61,11 +61,14 @@
             <div id="panel-formations" class="panel active">
                 <h2 style="margin-bottom: 1rem;">Gerenciar Formações</h2>
                 <div class="form-crud">
-                    <h4>Nova Formação</h4>
+                    <h4>Novo Jogo</h4>
                     <form id="form-formations" style="display: flex; gap: 1rem; margin-top: 1rem;">
                         <div style="flex: 1;"><input type="text" id="f-title" class="input-admin" placeholder="Título" required></div>
                         <div style="flex: 2;"><input type="text" id="f-desc" class="input-admin" placeholder="Descrição" required></div>
-                        <div style="flex: 1;"><input type="text" id="f-icon" class="input-admin" placeholder="Ícone (ex: ph ph-laptop)" required></div>
+                        <div style="flex: 2;"><input type="text" id="f-desc" class="input-admin" placeholder="Gênero" required></div>
+                        <div style="flex: 1; min-width: 150px;">
+                            <input type="file" id="n-img" class="input-admin" accept="image/jpeg,image/png,image/webp,image/gif" required style="padding: 0.55rem 1rem;">
+                        </div>
                         <div><button type="submit" class="btn btn-primary" style="height: 40px;">Adicionar</button></div>
                     </form>
                 </div>

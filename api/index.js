@@ -19,7 +19,7 @@ const cors       = require('cors');    // Libera acesso de outras origens (ex: o
 const sequelize  = require('./src/config/database'); // Nossa conexão configurada com o MySQL
 
 // Importamos cada arquivo de rotas separado (um por módulo)
-//const authRoutes      = require('./src/routes/authRoutes');
+const authRoutes      = require('./src/routes/authRoutes');
 const gameRoutes        = require('./src/routes/gameRoutes');
 const releaseRoutes     = require('./src/routes/releaseRoutes');
 const publisherRoutes   = require('./src/routes/publisherRoutes');
@@ -42,7 +42,7 @@ app.use(express.static('public'));
 // Cada módulo tem seu próprio arquivo de rotas.
 // Todos os prefixos de URL são gerenciados aqui.
 
-//app.use(authRoutes);       // POST /login
+app.use(authRoutes);       // POST /login
 app.use(gameRoutes);        // GET/POST/DELETE /formations
 app.use(releaseRoutes);        // GET/POST/DELETE /formations
 app.use(publisherRoutes);        // GET/POST/DELETE /formations
