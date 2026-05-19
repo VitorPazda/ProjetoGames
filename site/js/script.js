@@ -204,7 +204,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const API_URL = 'http://localhost:3000';
 
     // ── 5.1 Formações ──────────────────────────────────────────────────────────
-    axios.get(`${API_URL}/formations`)
+    axios.get(`${API_URL}/game`)
         .then(resposta => {
             const container = document.getElementById('formations-container');
             const dados     = resposta.data; // array de formações vindos da API
@@ -218,14 +218,13 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             // Para cada formação, criamos um "card" com o mesmo HTML do site original
-            dados.forEach(formacao => {
+            dados.forEach(game => {
                 container.innerHTML += `
-                    <article class="card">
-                        <div class="card-icon-wrapper">
-                            <i class="${formacao.icon}"></i>
-                        </div>
-                        <h3>${formacao.title}</h3>
-                        <p>${formacao.description}</p>
+                    <article class="card">  
+                        <h3>${game.title}</h3>
+                        <p>${game.description}</p>
+                        <p>${game.genre}</p>
+                        <img src="${API_URL}${game.image_url}" alt="${game.title}" class="news-img">
                         <a href="#" class="btn btn-outline">Detalhes</a>
                     </article>
                 `;
