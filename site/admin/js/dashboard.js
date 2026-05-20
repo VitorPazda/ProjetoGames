@@ -81,7 +81,7 @@ async function loadGames() {
         // Usamos template literal para montar o HTML de cada linha da tabela
         tbody.innerHTML = data.map(g => `
             <tr>
-                <td>${g.id}</td>
+                <td>${g.idGame}</td>
                 <td>${g.title}</td>
                 <td>${g.description}</td>
                 <td>${g.genre}</td>
@@ -110,18 +110,20 @@ async function loadGames() {
 document.getElementById('form-formations').addEventListener('submit', async (e) => {
     e.preventDefault();
 
-    // Lemos os campos do formulário pelo ID
-    const title         = document.getElementById('f-title').value;
-    const description   = document.getElementById('f-desc').value;
-    const genre         = document.getElementById('f-genre').value;
-    const img           = document.getElementById('f-img');
+    // Criamos o FormData e adicionamos cada campo manualmente
+    const formData = new FormData();
+    formData.append('title',       document.getElementById('f-title').value);
+    formData.append('description',        document.getElementById('f-desc').value);
+    formData.append('genre', document.getElementById('f-genre').value);
+    formData.append('image',       document.getElementById('f-img').files[0]); // O arquivo!
 
-    // api.post usa a instância configurada com o token JWT
-    await api.post('/game', { title, description, genre });
+    // api.post já tem o token JWT configurado via interceptor
+    await api.post('/game', formData);
 
-    // Limpa o formulário e recarrega a tabela
+    // Limpa o formulário, esconde a prévia e recarrega a tabela
     e.target.reset();
-    loadGames();
+    document.getElementById('f-preview').style.display = 'none';
+    loadNews();
 });
 
 /**
