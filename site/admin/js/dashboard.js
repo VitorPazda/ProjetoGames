@@ -90,7 +90,7 @@ async function loadGames() {
                          style="height: 50px; width: 70px; object-fit: cover; border-radius: 4px; border: 1px solid #e2e8f0;">
                 </td>
                 <td>
-                    <button onclick="deleteFormation(${g.id})"
+                    <button onclick="deleteGame(${g.idGame})"
                             style="color:#ef4444; border-color:#ef4444;"
                             class="btn btn-outline btn-sm">
                         Excluir
@@ -112,10 +112,10 @@ document.getElementById('form-formations').addEventListener('submit', async (e) 
 
     // Criamos o FormData e adicionamos cada campo manualmente
     const formData = new FormData();
-    formData.append('title',       document.getElementById('f-title').value);
-    formData.append('description',        document.getElementById('f-desc').value);
-    formData.append('genre', document.getElementById('f-genre').value);
-    formData.append('image',       document.getElementById('f-img').files[0]); // O arquivo!
+    formData.append('title',            document.getElementById('f-title').value);
+    formData.append('description',      document.getElementById('f-desc').value);
+    formData.append('genre',            document.getElementById('f-genre').value);
+    formData.append('image',            document.getElementById('f-img').files[0]); // O arquivo!
 
     // api.post já tem o token JWT configurado via interceptor
     await api.post('/game', formData);
@@ -129,12 +129,11 @@ document.getElementById('form-formations').addEventListener('submit', async (e) 
 /**
  * deleteFormation — exclui uma formação pelo ID.
  * Chamado pelo botão "Excluir" em cada linha da tabela.
- * @param {number} id - ID da formação a excluir
  */
-async function deleteFormation(id) {
-    if (confirm('Tem certeza que deseja excluir esta formação?')) {
-        await api.delete(`/formations/${id}`);
-        loadFormations(); // Atualiza a tabela após excluir
+async function deleteGame(idGame) {
+    if (confirm('Tem certeza que deseja excluir este jogo?')) {
+        await api.delete(`/game/${idGame}`);
+        loadGames(); // Atualiza a tabela após excluir
     }
 }
 

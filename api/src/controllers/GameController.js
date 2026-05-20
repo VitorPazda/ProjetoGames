@@ -93,7 +93,7 @@ module.exports = {
                 }
             }
 
-            await Game.destroy({ where: { id } });
+            await Game.destroy({ where: { idGame: id } });
             return res.json({ success: true });
 
         } catch (err) {
