@@ -62,7 +62,7 @@ function showPanel(panelName) {
     document.getElementById(`menu-${panelName}`).classList.add('active');
 
     // Carrega os dados do módulo ativo
-    if (panelName === 'formations') loadFormations();
+    if (panelName === 'games')      loadGames();
     if (panelName === 'news')       loadNews();
     if (panelName === 'events')     loadEvents();
 }
@@ -73,19 +73,24 @@ function showPanel(panelName) {
  * loadFormations — busca as formações na API e renderiza na tabela.
  * Usamos axios público (sem token) pois GET /formations é rota pública.
  */
-async function loadFormations() {
+async function loadGames() {
     try {
-        const { data } = await axios.get(`${API_URL}/formations`);
+        const { data } = await axios.get(`${API_URL}/game`);
         const tbody = document.getElementById('tbody-formations');
 
         // Usamos template literal para montar o HTML de cada linha da tabela
-        tbody.innerHTML = data.map(f => `
+        tbody.innerHTML = data.map(g => `
             <tr>
-                <td>${f.id}</td>
-                <td>${f.title}</td>
-                <td><i class="${f.icon}"></i> <small>${f.icon}</small></td>
+                <td>${g.id}</td>
+                <td>${g.title}</td>
+                <td>${g.description}</td>
+                <td>${g.genre}</td>
                 <td>
-                    <button onclick="deleteFormation(${f.id})"
+                    <img src="${API_URL}${g.image_url}" alt="${g.title}"
+                         style="height: 50px; width: 70px; object-fit: cover; border-radius: 4px; border: 1px solid #e2e8f0;">
+                </td>
+                <td>
+                    <button onclick="deleteFormation(${g.id})"
                             style="color:#ef4444; border-color:#ef4444;"
                             class="btn btn-outline btn-sm">
                         Excluir
@@ -106,16 +111,17 @@ document.getElementById('form-formations').addEventListener('submit', async (e) 
     e.preventDefault();
 
     // Lemos os campos do formulário pelo ID
-    const title       = document.getElementById('f-title').value;
-    const description = document.getElementById('f-desc').value;
-    const icon        = document.getElementById('f-icon').value;
+    const title         = document.getElementById('f-title').value;
+    const description   = document.getElementById('f-desc').value;
+    const genre         = document.getElementById('f-genre').value;
+    const img           = document.getElementById('f-img');
 
     // api.post usa a instância configurada com o token JWT
-    await api.post('/formations', { title, description, icon });
+    await api.post('/game', { title, description, genre });
 
     // Limpa o formulário e recarrega a tabela
     e.target.reset();
-    loadFormations();
+    loadGames();
 });
 
 /**
@@ -264,4 +270,4 @@ async function deleteEvent(id) {
 
 // ─── Carga Inicial ────────────────────────────────────────────────────────────
 // Ao abrir o dashboard, já carregamos as formações (painel padrão)
-loadFormations();
+loadGames();
