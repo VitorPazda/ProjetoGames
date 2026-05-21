@@ -104,6 +104,27 @@ async function loadGames() {
 }
 
 /**
+ * Preview de imagem — ao selecionar um arquivo, mostra uma prévia antes de enviar.
+ * Usamos FileReader para ler o arquivo localmente sem enviar ao servidor.
+ */
+document.getElementById('f-img').addEventListener('change', (e) => {
+    const file    = e.target.files[0];
+    const preview = document.getElementById('f-preview');
+    const img     = document.getElementById('f-preview-img');
+
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = (ev) => {
+            img.src = ev.target.result;
+            preview.style.display = 'block';
+        };
+        reader.readAsDataURL(file);
+    } else {
+        preview.style.display = 'none';
+    }
+});
+
+/**
  * Ouvinte do formulário de Formações.
  * e.preventDefault() impede o recarregamento da página.
  */
