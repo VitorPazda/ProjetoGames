@@ -62,9 +62,9 @@ function showPanel(panelName) {
     document.getElementById(`menu-${panelName}`).classList.add('active');
 
     // Carrega os dados do módulo ativo
-    if (panelName === 'games')      loadGames();
-    if (panelName === 'news')       loadNews();
-    if (panelName === 'events')     loadEvents();
+    if (panelName === 'games')          loadGames();
+    if (panelName === 'publishers')     loadPublishers();
+    if (panelName === 'events')         loadEvents();
 }
 
 // ─── Módulo: Formações ───────────────────────────────────────────────────────
@@ -158,26 +158,22 @@ async function deleteGame(idGame) {
     }
 }
 
-// ─── Módulo: Notícias ────────────────────────────────────────────────────────
+// ─── Módulo: Notícias/Publisher ────────────────────────────────────────────────────────
 
 /**
  * loadNews — busca as notícias e exibe na tabela com thumbnail da imagem.
  * A image_url agora é um caminho relativo servido pela API (ex: /uploads/news/foto.jpg).
  */
-async function loadNews() {
+async function loadPublishers() {
     try {
-        const { data } = await axios.get(`${API_URL}/news`);
-        document.getElementById('tbody-news').innerHTML = data.map(n => `
+        const { data } = await axios.get(`${API_URL}/publisher`);
+        document.getElementById('tbody-news').innerHTML = data.map(p => `
             <tr>
-                <td>${n.id}</td>
-                <td>${n.title}</td>
-                <td>${n.date}</td>
+                <td>${p.idPublisher}</td>
+                <td>${p.name}</td>
+                <td>${p.country}</td>
                 <td>
-                    <img src="${API_URL}${n.image_url}" alt="${n.title}"
-                         style="height: 50px; width: 70px; object-fit: cover; border-radius: 4px; border: 1px solid #e2e8f0;">
-                </td>
-                <td>
-                    <button onclick="deleteNews(${n.id})"
+                    <button onclick="deletePublisher(${p.idPublisher})"
                             style="color:#ef4444; border-color:#ef4444;"
                             class="btn btn-outline btn-sm">
                         Excluir
@@ -186,30 +182,10 @@ async function loadNews() {
             </tr>
         `).join('');
     } catch (err) {
-        console.error('Erro ao carregar notícias:', err);
+        console.error('Erro ao carregar as publicadoras:', err);
     }
 }
 
-/**
- * Preview de imagem — ao selecionar um arquivo, mostra uma prévia antes de enviar.
- * Usamos FileReader para ler o arquivo localmente sem enviar ao servidor.
- */
-document.getElementById('n-img').addEventListener('change', (e) => {
-    const file    = e.target.files[0];
-    const preview = document.getElementById('n-preview');
-    const img     = document.getElementById('n-preview-img');
-
-    if (file) {
-        const reader = new FileReader();
-        reader.onload = (ev) => {
-            img.src = ev.target.result;
-            preview.style.display = 'block';
-        };
-        reader.readAsDataURL(file);
-    } else {
-        preview.style.display = 'none';
-    }
-});
 
 /**
  * Submit do formulário de Notícias — agora usa FormData.
@@ -223,26 +199,21 @@ document.getElementById('n-img').addEventListener('change', (e) => {
 document.getElementById('form-news').addEventListener('submit', async (e) => {
     e.preventDefault();
 
-    // Criamos o FormData e adicionamos cada campo manualmente
-    const formData = new FormData();
-    formData.append('title',       document.getElementById('n-title').value);
-    formData.append('date',        document.getElementById('n-date').value);
-    formData.append('description', document.getElementById('n-desc').value);
-    formData.append('image',       document.getElementById('n-img').files[0]); // O arquivo!
+    const name      = document.getElementById('n-title').value;
+    const country   = document.getElementById('n-date').value;
 
     // api.post já tem o token JWT configurado via interceptor
-    await api.post('/news', formData);
+    await api.post('/publisher', { name, country });
 
     // Limpa o formulário, esconde a prévia e recarrega a tabela
     e.target.reset();
-    document.getElementById('n-preview').style.display = 'none';
-    loadNews();
+    loadPublishers();
 });
 
-async function deleteNews(id) {
-    if (confirm('Tem certeza que deseja excluir esta notícia?')) {
-        await api.delete(`/news/${id}`);
-        loadNews();
+async function deletePublisher(idPublisher) {
+    if (confirm('Tem certeza que deseja excluir esta publicadora?')) {
+        await api.delete(`/publisher/${idPublisher}`);
+        loadPublishers();
     }
 }
 
