@@ -58,7 +58,7 @@ module.exports = {
         const { id } = req.params;
 
         // destroy() é equivalente ao SQL: DELETE FROM Formations WHERE id = ?
-        await Publisher.destroy({ where: { id } });
+        await Publisher.destroy({ where: { idPublisher: id } });
         return res.json({ success: true });
     },
 };
