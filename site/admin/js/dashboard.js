@@ -65,6 +65,7 @@ function showPanel(panelName) {
     if (panelName === 'games')          loadGames();
     if (panelName === 'publishers')     loadPublishers();
     if (panelName === 'releases')       loadReleases();
+    if (panelName === 'studios')        loadStudios();
 }
 
 // ─── Módulo: Formações ───────────────────────────────────────────────────────
@@ -259,6 +260,53 @@ async function deleteEvent(idRelease) {
     if (confirm('Tem certeza que deseja excluir este lançamento?')) {
         await api.delete(`/release/${idRelease}`);
         loadReleases();
+    }
+}
+
+// ─── Módulo: Studios ────────────────────────────────────────────────────────
+
+/**
+ * loadNews — busca as notícias e exibe na tabela com thumbnail da imagem.
+ * A image_url agora é um caminho relativo servido pela API (ex: /uploads/news/foto.jpg).
+ */
+async function loadStudios() {
+    try {
+        const { data } = await axios.get(`${API_URL}/studio`);
+        document.getElementById('tbody-studios').innerHTML = data.map(studio => `
+            <tr>
+                <td>${studio.id}</td>
+                <td>${studio.name}</td>
+                <td>${studio.foundationYear}</td>
+                <td>${studio.country}</td>
+                <td>
+                    <button onclick="deleteStudio(${studio.id})"
+                            style="color:#ef4444; border-color:#ef4444;"
+                            class="btn btn-outline btn-sm">
+                        Excluir
+                    </button>
+                </td>
+            </tr>
+        `).join('');
+    } catch (err) {
+        console.error('Erro ao carregar os estúdios:', err);
+    }
+}
+
+document.getElementById('form-studios').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    await api.post('/studio', {
+        name:                   document.getElementById('studio-name').value,
+        foundationYear:         document.getElementById('studio-foundationYear').value,
+        country:                document.getElementById('studio-country').value,
+    });
+    e.target.reset();
+    loadStudios();
+});
+
+async function deleteStudio(id) {
+    if (confirm('Tem certeza que deseja excluir este estúdio?')) {
+        await api.delete(`/studio/${id}`);
+        loadStudios();
     }
 }
 
