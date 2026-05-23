@@ -225,13 +225,13 @@ async function loadReleases() {
         const { data } = await axios.get(`${API_URL}/release`);
         document.getElementById('tbody-events').innerHTML = data.map(re => `
             <tr>
-                <td>${re.idRelease}</td>
+                <td>${re.id}</td>
                 <td>${re.title}</td>
                 <td>${re.description}</td>
                 <td>${re.game}</td>
                 <td>${re.date}</td>
                 <td>
-                    <button onclick="deleteEvent(${re.idRelease})"
+                    <button onclick="deleteEvent(${re.id})"
                             style="color:#ef4444; border-color:#ef4444;"
                             class="btn btn-outline btn-sm">
                         Excluir
@@ -256,9 +256,9 @@ document.getElementById('form-events').addEventListener('submit', async (e) => {
     loadReleases();
 });
 
-async function deleteEvent(idRelease) {
+async function deleteEvent(id) {
     if (confirm('Tem certeza que deseja excluir este lançamento?')) {
-        await api.delete(`/release/${idRelease}`);
+        await api.delete(`/release/${id}`);
         loadReleases();
     }
 }

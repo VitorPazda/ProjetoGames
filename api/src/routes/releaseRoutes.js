@@ -7,7 +7,7 @@ const { Router } = require('express');
 const ReleaseController = require('../controllers/ReleaseController');
 
 // Importamos nosso "vigia" (middleware) que impede acesso não autorizado
-//const { authMiddleware } = require('../middlewares/auth');
+const { authMiddleware } = require('../middlewares/auth');
 
 const routes = Router();
 
@@ -20,7 +20,7 @@ routes.get('/release', ReleaseController.index);
  * Isso significa: "Express, antes de executar o código do controlador, 
  * passe na recepção (authMiddleware) e verifique a identidade do usuário".
  */
-routes.post('/release', ReleaseController.store);
+routes.post('/release', authMiddleware, ReleaseController.store);
 routes.delete('/release/:id', ReleaseController.destroy);
 
 module.exports = routes;
