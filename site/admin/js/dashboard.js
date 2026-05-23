@@ -64,7 +64,7 @@ function showPanel(panelName) {
     // Carrega os dados do módulo ativo
     if (panelName === 'games')          loadGames();
     if (panelName === 'publishers')     loadPublishers();
-    if (panelName === 'events')         loadEvents();
+    if (panelName === 'releases')       loadReleases();
 }
 
 // ─── Módulo: Formações ───────────────────────────────────────────────────────
@@ -217,18 +217,20 @@ async function deletePublisher(idPublisher) {
     }
 }
 
-// ─── Módulo: Eventos ─────────────────────────────────────────────────────────
+// ─── Módulo: Eventos/Releases ─────────────────────────────────────────────────────────
 
-async function loadEvents() {
+async function loadReleases() {
     try {
-        const { data } = await axios.get(`${API_URL}/events`);
-        document.getElementById('tbody-events').innerHTML = data.map(ev => `
+        const { data } = await axios.get(`${API_URL}/release`);
+        document.getElementById('tbody-events').innerHTML = data.map(re => `
             <tr>
-                <td>${ev.id}</td>
-                <td><strong>${ev.day}/${ev.month}</strong></td>
-                <td>${ev.title}</td>
+                <td>${re.idRelease}</td>
+                <td>${re.title}</td>
+                <td>${re.description}</td>
+                <td>${re.game}</td>
+                <td>${re.date}</td>
                 <td>
-                    <button onclick="deleteEvent(${ev.id})"
+                    <button onclick="deleteEvent(${re.idRelease})"
                             style="color:#ef4444; border-color:#ef4444;"
                             class="btn btn-outline btn-sm">
                         Excluir
@@ -243,21 +245,20 @@ async function loadEvents() {
 
 document.getElementById('form-events').addEventListener('submit', async (e) => {
     e.preventDefault();
-    await api.post('/events', {
-        title:    document.getElementById('e-title').value,
-        day:      document.getElementById('e-day').value,
-        month:    document.getElementById('e-month').value,
-        time:     document.getElementById('e-time').value,
-        location: document.getElementById('e-loc').value,
+    await api.post('/release', {
+        title:              document.getElementById('e-title').value,
+        description:        document.getElementById('e-day').value,
+        game:               document.getElementById('e-month').value,
+        date:               document.getElementById('e-time').value,
     });
     e.target.reset();
-    loadEvents();
+    loadReleases();
 });
 
-async function deleteEvent(id) {
-    if (confirm('Tem certeza que deseja excluir este evento?')) {
-        await api.delete(`/events/${id}`);
-        loadEvents();
+async function deleteEvent(idRelease) {
+    if (confirm('Tem certeza que deseja excluir este lançamento?')) {
+        await api.delete(`/release/${idRelease}`);
+        loadReleases();
     }
 }
 
