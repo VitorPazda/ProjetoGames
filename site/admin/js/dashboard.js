@@ -68,30 +68,30 @@ function showPanel(panelName) {
     if (panelName === 'studios')        loadStudios();
 }
 
-// ─── Módulo: Formações ───────────────────────────────────────────────────────
+// ─── Módulo: Games ───────────────────────────────────────────────────────
 
 /**
- * loadFormations — busca as formações na API e renderiza na tabela.
+ * loadGames — busca as formações na API e renderiza na tabela.
  * Usamos axios público (sem token) pois GET /formations é rota pública.
  */
 async function loadGames() {
     try {
         const { data } = await axios.get(`${API_URL}/game`);
-        const tbody = document.getElementById('tbody-formations');
+        const tbody = document.getElementById('tbody-games');
 
         // Usamos template literal para montar o HTML de cada linha da tabela
-        tbody.innerHTML = data.map(g => `
+        tbody.innerHTML = data.map(game => `
             <tr>
-                <td>${g.id}</td>
-                <td>${g.title}</td>
-                <td>${g.description}</td>
-                <td>${g.genre}</td>
+                <td>${game.id}</td>
+                <td>${game.title}</td>
+                <td>${game.description}</td>
+                <td>${game.genre}</td>
                 <td>
-                    <img src="${API_URL}${g.image_url}" alt="${g.title}"
+                    <img src="${API_URL}${game.image_url}" alt="${game.title}"
                          style="height: 50px; width: 70px; object-fit: cover; border-radius: 4px; border: 1px solid #e2e8f0;">
                 </td>
                 <td>
-                    <button onclick="deleteGame(${g.id})"
+                    <button onclick="deleteGame(${game.id})"
                             style="color:#ef4444; border-color:#ef4444;"
                             class="btn btn-outline btn-sm">
                         Excluir
@@ -108,10 +108,10 @@ async function loadGames() {
  * Preview de imagem — ao selecionar um arquivo, mostra uma prévia antes de enviar.
  * Usamos FileReader para ler o arquivo localmente sem enviar ao servidor.
  */
-document.getElementById('f-img').addEventListener('change', (e) => {
+document.getElementById('game-img').addEventListener('change', (e) => {
     const file    = e.target.files[0];
-    const preview = document.getElementById('f-preview');
-    const img     = document.getElementById('f-preview-img');
+    const preview = document.getElementById('game-preview');
+    const img     = document.getElementById('game-preview-img');
 
     if (file) {
         const reader = new FileReader();
@@ -126,30 +126,30 @@ document.getElementById('f-img').addEventListener('change', (e) => {
 });
 
 /**
- * Ouvinte do formulário de Formações.
+ * Ouvinte do formulário de Games.
  * e.preventDefault() impede o recarregamento da página.
  */
-document.getElementById('form-formations').addEventListener('submit', async (e) => {
+document.getElementById('form-games').addEventListener('submit', async (e) => {
     e.preventDefault();
 
     // Criamos o FormData e adicionamos cada campo manualmente
     const formData = new FormData();
-    formData.append('title',            document.getElementById('f-title').value);
-    formData.append('description',      document.getElementById('f-desc').value);
-    formData.append('genre',            document.getElementById('f-genre').value);
-    formData.append('image',            document.getElementById('f-img').files[0]); // O arquivo!
+    formData.append('title',            document.getElementById('game-title').value);
+    formData.append('description',      document.getElementById('game-description').value);
+    formData.append('genre',            document.getElementById('game-genre').value);
+    formData.append('image',            document.getElementById('game-img').files[0]); // O arquivo!
 
     // api.post já tem o token JWT configurado via interceptor
     await api.post('/game', formData);
 
     // Limpa o formulário, esconde a prévia e recarrega a tabela
     e.target.reset();
-    document.getElementById('f-preview').style.display = 'none';
-    loadNews();
+    document.getElementById('game-preview').style.display = 'none';
+    loadGames();
 });
 
 /**
- * deleteFormation — exclui uma formação pelo ID.
+ * deleteGame — exclui uma formação pelo ID.
  * Chamado pelo botão "Excluir" em cada linha da tabela.
  */
 async function deleteGame(id) {
