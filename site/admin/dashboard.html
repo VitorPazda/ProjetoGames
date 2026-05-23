@@ -50,8 +50,9 @@
         <aside class="sidebar">
             <h3 style="margin-bottom: 2rem; color: var(--primary-color);"><i class="ph ph-terminal-window"></i> Painel Admin</h3>
             <a onclick="showPanel('games')" class="menu-item active" id="menu-games"><i class="ph ph-game-controller"></i> Jogos</a>
-            <a onclick="showPanel('publishers')" class="menu-item" id="menu-publishers"><i class="ph ph-newspaper"></i> Publicadoras</a>
-            <a onclick="showPanel('releases')" class="menu-item" id="menu-releases"><i class="ph ph-calendar"></i> Eventos</a>
+            <a onclick="showPanel('publishers')" class="menu-item" id="menu-publishers"><i class="ph ph-building-office"></i> Publicadoras</a>
+            <a onclick="showPanel('releases')" class="menu-item" id="menu-releases"><i class="ph ph-calendar"></i> Lançamentos</a>
+            <a onclick="showPanel('studios')" class="menu-item" id="menu-studios"><i class="ph ph-calendar"></i> Lançamentos</a>
             <hr style="margin: 2rem 0; border: none; border-top: 1px solid var(--border-color);">
             <a onclick="logout()" style="color: #ef4444;"><i class="ph ph-sign-out"></i> Sair</a>
         </aside>
@@ -108,6 +109,24 @@
                         <div style="flex: 1; min-width: 80px;"><input type="text" id="e-day" class="input-admin" placeholder="Descrição" required></div>
                         <div style="flex: 1; min-width: 80px;"><input type="text" id="e-month" class="input-admin" placeholder="Jogo" required></div>
                         <div style="flex: 1; min-width: 150px;"><input type="text" id="e-time" class="input-admin" placeholder="Data (ex: 18/09)" required></div>
+                        <div style="flex: 100%;"><button type="submit" class="btn btn-primary">Criar Lançamento</button></div>
+                    </form>
+                </div>
+                <table class="data-table">
+                    <thead><tr><th>ID</th><th>Título</th><th>Descrição</th><th>Jogo</th><th>Data</th><th>Ações</th></tr></thead>
+                    <tbody id="tbody-events"></tbody>
+                </table>
+            </div>
+
+            <!-- Studios -->
+            <div id="panel-studios" class="panel">
+                <h2 style="margin-bottom: 1rem;">Gerenciar Estúdios</h2>
+                <div class="form-crud">
+                    <h4>Novo Estúdio</h4>
+                    <form id="form-studios" style="display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 1rem;">
+                        <div style="flex: 1; min-width: 200px;"><input type="text" id="studio-name" class="input-admin" placeholder="Nome do Estúdio" required></div>
+                        <div style="flex: 1; min-width: 80px;"><input type="text" id="studio-fondationYear" class="input-admin" placeholder="Ano de fundação" required></div>
+                        <div style="flex: 1; min-width: 80px;"><input type="text" id="studio-country" class="input-admin" placeholder="Jogo" required></div>
                         <div style="flex: 100%;"><button type="submit" class="btn btn-primary">Criar Lançamento</button></div>
                     </form>
                 </div>
