@@ -233,7 +233,7 @@ document.addEventListener('DOMContentLoaded', () => {
         .catch(err => console.error('Erro ao carregar formações:', err));
 
 
-    // ── 5.1 Formações ──────────────────────────────────────────────────────────
+    // ── 5.1 Publisher ──────────────────────────────────────────────────────────
     axios.get(`${API_URL}/publisher`)
         .then(resposta => {
             const container = document.getElementById('publishers-container');
@@ -260,7 +260,7 @@ document.addEventListener('DOMContentLoaded', () => {
         })
         .catch(err => console.error('Erro ao carregar formações:', err));
 
-    // ── 5.2 Notícias do Blog ───────────────────────────────────────────────────
+    // ── 5.2 Releases ───────────────────────────────────────────────────
     axios.get(`${API_URL}/release`)
         .then(resposta => {
             const container = document.getElementById('news-container-inner');
@@ -289,10 +289,10 @@ document.addEventListener('DOMContentLoaded', () => {
         .catch(err => console.error('Erro ao carregar notícias:', err));
 
 
-    // ── 5.3 Próximos Eventos ───────────────────────────────────────────────────
-    axios.get(`${API_URL}/events`)
+    // ── 5.3 Studios ───────────────────────────────────────────────────
+    axios.get(`${API_URL}/studio`)
         .then(resposta => {
-            const container = document.getElementById('events-container-inner');
+            const container = document.getElementById('studios-container');
             const dados     = resposta.data;
 
             container.innerHTML = '';
@@ -302,24 +302,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
-            dados.forEach(evento => {
+            dados.forEach(studio => {
                 container.innerHTML += `
-                    <div class="event-item">
-                        <div class="event-calendar">
-                            <span class="day">${evento.day}</span>
-                            <span class="month">${evento.month}</span>
-                        </div>
-                        <div class="event-text">
-                            <h4>${evento.title}</h4>
-                            <span class="event-meta">
-                                <i class="ph ph-map-pin"></i> ${evento.location} |
-                                <i class="ph ph-clock"></i> ${evento.time}
-                            </span>
-                        </div>
-                    </div>
+                    <article class="card">  
+                        <h3>${studio.name}</h3>
+                        <p>${studio.foundationYear}</p>
+                        <p>${studio.country}</p>
+                        <a href="#" class="btn btn-outline">Detalhes</a>
+                    </article>
                 `;
             });
         })
-        .catch(err => console.error('Erro ao carregar eventos:', err));
+        .catch(err => console.error('Erro ao carregar estúdios:', err));
 
 }); // fim do DOMContentLoaded

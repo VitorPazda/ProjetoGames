@@ -28,17 +28,17 @@
         <div class="container header-container">
             <!-- Logo -->
             <a href="#" class="logo">
-                <i class="ph ph-terminal-window"></i> CodeSchool
+                <i class="ph ph-game-controller"></i> GamePortal
             </a>
 
             <!-- Menu Principal -->
             <nav class="nav" id="nav">
                 <ul class="nav-list">
                     <li><a href="#home" class="nav-link">Home</a></li>
-                    <li><a href="#cursos" class="nav-link">Cursos</a></li>
-                    <li><a href="#numeros" class="nav-link">Sobre</a></li>
-                    <li><a href="#noticias" class="nav-link">Notícias</a></li>
-                    <li><a href="#eventos" class="nav-link">Eventos</a></li>
+                    <li><a href="#games" class="nav-link">Jogos</a></li>
+                    <li><a href="#publishers" class="nav-link">Publishers</a></li>
+                    <li><a href="#studios" class="nav-link">Studios</a></li>
+                    <li><a href="#releases" class="nav-link">Releases</a></li>
                     <li><a href="#contato" class="nav-link">Contato</a></li>
                 </ul>
             </nav>
@@ -49,7 +49,7 @@
                     <!-- O ícone começa como Sol ou Lua dependendo do script JS -->
                     <i class="ph ph-moon"></i>
                 </button>
-                <a href="#contato" class="btn btn-primary d-none-mobile">Matricule-se</a>
+                <a href="#contato" class="btn btn-primary d-none-mobile">Compre!</a>
 
                 <!-- Botão Menu Mobile (Hamburguer) -->
                 <button class="icon-btn menu-btn" id="menu-btn" aria-label="Abrir Menu">
@@ -69,21 +69,30 @@
                 <!-- Slide 1 -->
                 <div class="carousel-slide active">
                     <!-- Usamos imagens do Unsplash como placeholders de alta qualidade -->
-                    <img src="img/slide01.jpg" alt="Programação" class="carousel-bg">
+                    <img src="img/helldivers.jpg" alt="Helldivers2" class="carousel-bg">
                     <div class="carousel-content container">
-                        <h1>Sua jornada na tecnologia começa aqui</h1>
-                        <p>Aprenda do zero ao avançado com profissionais atuantes no mercado.</p>
-                        <a href="#cursos" class="btn btn-primary">Ver Formações</a>
+                        <h1>Embarque Soldado!</h1>
+                        <p>Venha libertar a Super Terra na guerra intergaláctica</p>
+                        <a href="#games" class="btn btn-primary">Conheça!</a>
                     </div>
                 </div>
 
                 <!-- Slide 2 -->
                 <div class="carousel-slide">
-                    <img src="img/slide02.jpg" alt="Equipe colaborando" class="carousel-bg">
+                    <img src="img/theLastOfUsPart2.jpg" alt="The Last of Us Part II" class="carousel-bg">
                     <div class="carousel-content container">
-                        <h1>Estude em um ambiente totalmente colaborativo</h1>
-                        <p>Metodologia focada em projetos práticos e pair programming.</p>
-                        <a href="#contato" class="btn btn-primary">Agende uma Visita</a>
+                        <h1>Sobreviva em um apocalipse zumbi</h1>
+                        <p>História focada em drama</p>
+                        <a href="#games" class="btn btn-primary">Conheça!</a>
+                    </div>
+                </div>
+
+                <!-- Slide 3 -->
+                <div class="carousel-slide">
+                    <img src="img/clairObscur.avif" alt="Clair Obscur" class="carousel-bg">
+                    <div class="carousel-content container">
+                        <h1>Acabe com Artífice</h1>
+                        <a href="#games" class="btn btn-primary">Conheça!</a>
                     </div>
                 </div>
 
@@ -106,7 +115,6 @@
                 <div class="section-title">
                     <h2>Nossos Jogos</h2>
                     <div class="line"></div>
-                    <p>Jogar!</p>
                 </div>
 
                 <!-- Usaremos CSS Grid aqui para criar cards que se ajustam sozinhos -->
@@ -119,7 +127,7 @@
                 <!-- =========================
              SEÇÃO: PUBLISHERS
              ========================= -->
-        <section id="games" class="section bg-alt">
+        <section id="publishers" class="section bg-alt">
             <div class="container">
                 <div class="section-title">
                     <h2>Publishers</h2>
@@ -134,32 +142,48 @@
             </div>
         </section>
 
+                <!-- =========================
+            SEÇÃO: STUDIOS
+            ========================= -->
+        <section id="studios" class="section bg-alt">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Studios</h2>
+                    <div class="line"></div>
+                </div>
+
+                <div class="grid grid-cards" id="studios-container">
+                    <p>Carregando studios...</p>
+                </div>
+            </div>
+        </section>
+
         <!-- =========================
              SEÇÃO: NÚMEROS (CONTADORES ANIMADOS)
              ========================= -->
         <section id="numeros" class="section stats-section">
             <div class="container">
                 <div class="section-title title-light">
-                    <h2>Impacto CodeSchool</h2>
+                    <h2>Impacto GamePortal</h2>
                     <div class="line"></div>
                 </div>
 
                 <div class="grid grid-stats">
                     <!-- Os atributos data-target serão lidos pelo JavaScript para fazer a animação -->
                     <div class="stat-box">
-                        <i class="ph ph-student"></i>
-                        <span class="stat-num" data-target="2500">0</span>
-                        <p>Alunos Formados</p>
+                        <i class="ph ph-money"></i>
+                        <span class="stat-num" data-target="5000">0</span>
+                        <p>Vendas</p>
                     </div>
                     <div class="stat-box">
-                        <i class="ph ph-books"></i>
-                        <span class="stat-num" data-target="35">0</span>
-                        <p>Cursos Ativos</p>
+                        <i class="ph ph-smiley"></i>
+                        <span class="stat-num" data-target="10000">0</span>
+                        <p>Clientes felizes</p>
                     </div>
                     <div class="stat-box">
-                        <i class="ph ph-buildings"></i>
-                        <span class="stat-num" data-target="6">0</span>
-                        <p>Campuses Físicos</p>
+                        <i class="ph ph-game-controller"></i>
+                        <span class="stat-num" data-target="1000">0</span>
+                        <p>Jogos Disponíveis</p>
                     </div>
                     <div class="stat-box">
                         <i class="ph ph-handshake"></i>
@@ -174,25 +198,16 @@
              SEÇÃO: NOTÍCIAS E EVENTOS
              ========================= -->
         <!-- Essa seção é dividida em duas grandes colunas (Notícias à esquerda, Eventos à direita) -->
-        <section id="noticias-eventos" class="section">
+        <section id="releases" class="section">
             <div class="container grid dual-layout">
 
                 <!-- Coluna 1: Notícias -->
                 <div class="news-container" id="noticias">
-                    <h3 class="box-title">Recentes no Blog</h3>
+                    <h3 class="box-title">Lançamentos!</h3>
                     <div id="news-container-inner">
-                        <p>Carregando notícias...</p>
+                        <p>Carregando lançamentos...</p>
                     </div>
                 </div>
-
-                <!-- Coluna 2: Eventos -->
-                <div class="events-container" id="eventos">
-                    <h3 class="box-title">Próximos Eventos</h3>
-                    <div id="events-container-inner">
-                        <p>Carregando eventos...</p>
-                    </div>
-                </div>
-
             </div>
         </section>
 
@@ -203,14 +218,12 @@
             <div class="container grid contact-layout">
 
                 <div class="contact-info">
-                    <h2>Pronto para programar?</h2>
-                    <p>Nossa equipe comercial está pronta para tirar todas as suas dúvidas sobre currículo, matrizes
-                        curriculares e opções de financiamento.</p>
+                    <h2>Pronto para jogar?</h2>
 
                     <ul class="contact-list">
-                        <li><i class="ph ph-envelope-simple"></i> contato@codeschool.edu.br</li>
+                        <li><i class="ph ph-envelope-simple"></i> contato@gameportal.com.br</li>
                         <li><i class="ph ph-phone"></i> (11) 9999-0000</li>
-                        <li><i class="ph ph-buildings"></i> Av. Tecnológica, 1024 - São Paulo, SP</li>
+                        <li><i class="ph ph-buildings"></i> Rio da Areia</li>
                     </ul>
                 </div>
 
@@ -245,25 +258,24 @@
         <div class="container grid footer-grid">
             <div class="brand-col">
                 <a href="#" class="logo text-light">
-                    <i class="ph ph-terminal-window"></i> CodeSchool
+                    <i class="ph ph-terminal-window"></i> GamePortal
                 </a>
-                <p>Educação técnica de alto nível para construir as tecnologias de amanhã.</p>
+                <p>Melhor loja de jogos do mundo!</p>
             </div>
 
             <div class="link-col">
                 <h4>Navegação</h4>
                 <ul>
                     <li><a href="#home">Home</a></li>
-                    <li><a href="#cursos">Nossos Cursos</a></li>
-                    <li><a href="#numeros">Impacto Institucional</a></li>
+                    <li><a href="#games">Nossos Jogos</a></li>
+                    <li><a href="#numeros">Impacto</a></li>
                 </ul>
             </div>
 
             <div class="link-col">
                 <h4>Comunidade</h4>
                 <ul>
-                    <li><a href="#noticias">Blog & Notícias</a></li>
-                    <li><a href="#eventos">Agenda de Eventos</a></li>
+                    <li><a href="#releases">Lançamentos</a></li>
                     <li><a href="#contato">Fale Conosco</a></li>
                 </ul>
             </div>
