@@ -207,20 +207,20 @@ async function deletePublisher(id) {
     }
 }
 
-// ─── Módulo: Eventos/Releases ─────────────────────────────────────────────────────────
+// ─── Módulo: Releases ─────────────────────────────────────────────────────────
 
 async function loadReleases() {
     try {
         const { data } = await axios.get(`${API_URL}/release`);
-        document.getElementById('tbody-events').innerHTML = data.map(re => `
+        document.getElementById('tbody-releases').innerHTML = data.map(release => `
             <tr>
-                <td>${re.id}</td>
-                <td>${re.title}</td>
-                <td>${re.description}</td>
-                <td>${re.game}</td>
-                <td>${re.date}</td>
+                <td>${release.id}</td>
+                <td>${release.title}</td>
+                <td>${release.description}</td>
+                <td>${release.game}</td>
+                <td>${release.date}</td>
                 <td>
-                    <button onclick="deleteEvent(${re.id})"
+                    <button onclick="deleteEvent(${release.id})"
                             style="color:#ef4444; border-color:#ef4444;"
                             class="btn btn-outline btn-sm">
                         Excluir
@@ -233,13 +233,13 @@ async function loadReleases() {
     }
 }
 
-document.getElementById('form-events').addEventListener('submit', async (e) => {
+document.getElementById('form-releases').addEventListener('submit', async (e) => {
     e.preventDefault();
     await api.post('/release', {
-        title:              document.getElementById('e-title').value,
-        description:        document.getElementById('e-day').value,
-        game:               document.getElementById('e-month').value,
-        date:               document.getElementById('e-time').value,
+        title:              document.getElementById('release-title').value,
+        description:        document.getElementById('release-description').value,
+        game:               document.getElementById('release-game').value,
+        date:               document.getElementById('release-date').value,
     });
     e.target.reset();
     loadReleases();

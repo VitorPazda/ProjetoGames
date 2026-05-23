@@ -99,22 +99,22 @@
                 </table>
             </div>
 
-            <!-- Eventos/Releases -->
+            <!-- Releases -->
             <div id="panel-releases" class="panel">
                 <h2 style="margin-bottom: 1rem;">Gerenciar Lançamentos</h2>
                 <div class="form-crud">
                     <h4>Novo Evento</h4>
-                    <form id="form-events" style="display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 1rem;">
-                        <div style="flex: 1; min-width: 200px;"><input type="text" id="e-title" class="input-admin" placeholder="Título" required></div>
-                        <div style="flex: 1; min-width: 80px;"><input type="text" id="e-day" class="input-admin" placeholder="Descrição" required></div>
-                        <div style="flex: 1; min-width: 80px;"><input type="text" id="e-month" class="input-admin" placeholder="Jogo" required></div>
-                        <div style="flex: 1; min-width: 150px;"><input type="text" id="e-time" class="input-admin" placeholder="Data (ex: 18/09)" required></div>
+                    <form id="form-releases" style="display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 1rem;">
+                        <div style="flex: 1; min-width: 200px;"><input type="text" id="release-title" class="input-admin" placeholder="Título" required></div>
+                        <div style="flex: 1; min-width: 80px;"><input type="text" id="release-description" class="input-admin" placeholder="Descrição" required></div>
+                        <div style="flex: 1; min-width: 80px;"><input type="text" id="release-game" class="input-admin" placeholder="Jogo" required></div>
+                        <div style="flex: 1; min-width: 150px;"><input type="text" id="release-date" class="input-admin" placeholder="Data (ex: 18/09)" required></div>
                         <div style="flex: 100%;"><button type="submit" class="btn btn-primary">Criar Lançamento</button></div>
                     </form>
                 </div>
                 <table class="data-table">
                     <thead><tr><th>ID</th><th>Título</th><th>Descrição</th><th>Jogo</th><th>Data</th><th>Ações</th></tr></thead>
-                    <tbody id="tbody-events"></tbody>
+                    <tbody id="tbody-releases"></tbody>
                 </table>
             </div>
 
