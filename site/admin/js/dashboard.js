@@ -159,22 +159,21 @@ async function deleteGame(id) {
     }
 }
 
-// ─── Módulo: Notícias/Publisher ────────────────────────────────────────────────────────
+// ─── Módulo: Publisher ────────────────────────────────────────────────────────
 
 /**
- * loadNews — busca as notícias e exibe na tabela com thumbnail da imagem.
- * A image_url agora é um caminho relativo servido pela API (ex: /uploads/news/foto.jpg).
+ * loadPublishers
  */
 async function loadPublishers() {
     try {
         const { data } = await axios.get(`${API_URL}/publisher`);
-        document.getElementById('tbody-news').innerHTML = data.map(p => `
+        document.getElementById('tbody-publishers').innerHTML = data.map(publisher => `
             <tr>
-                <td>${p.id}</td>
-                <td>${p.name}</td>
-                <td>${p.country}</td>
+                <td>${publisher.id}</td>
+                <td>${publisher.name}</td>
+                <td>${publisher.country}</td>
                 <td>
-                    <button onclick="deletePublisher(${p.id})"
+                    <button onclick="deletePublisher(${publisher.id})"
                             style="color:#ef4444; border-color:#ef4444;"
                             class="btn btn-outline btn-sm">
                         Excluir
@@ -187,21 +186,11 @@ async function loadPublishers() {
     }
 }
 
-
-/**
- * Submit do formulário de Notícias — agora usa FormData.
- *
- * FormData é o objeto nativo do JavaScript para enviar dados no formato
- * multipart/form-data, que é necessário quando há upload de arquivo.
- *
- * Ao passar um FormData para o axios.post(), ele automaticamente
- * define o Content-Type correto (multipart/form-data com boundary).
- */
-document.getElementById('form-news').addEventListener('submit', async (e) => {
+document.getElementById('form-publishers').addEventListener('submit', async (e) => {
     e.preventDefault();
 
-    const name      = document.getElementById('n-title').value;
-    const country   = document.getElementById('n-date').value;
+    const name      = document.getElementById('publisher-name').value;
+    const country   = document.getElementById('publisher-country').value;
 
     // api.post já tem o token JWT configurado via interceptor
     await api.post('/publisher', { name, country });

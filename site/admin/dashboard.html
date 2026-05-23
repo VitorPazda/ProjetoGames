@@ -58,7 +58,7 @@
         </aside>
 
         <main class="content">
-            <!-- Formações/GAME --> 
+            <!-- Games --> 
             <div id="panel-games" class="panel active">
                 <h2 style="margin-bottom: 1rem;">Gerenciar Jogos</h2>
                 <div class="form-crud">
@@ -87,15 +87,15 @@
                 <h2 style="margin-bottom: 1rem;">Gerenciar Publicadoras</h2>
                 <div class="form-crud">
                     <h4>Nova Publicadora</h4>
-                    <form id="form-news" style="display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 1rem;">
-                        <div style="flex: 1; min-width: 200px;"><input type="text" id="n-title" class="input-admin" placeholder="Nome" required></div>
-                        <div style="flex: 1; min-width: 150px;"><input type="text" id="n-date" class="input-admin" placeholder="País" required></div>
+                    <form id="form-publishers" style="display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 1rem;">
+                        <div style="flex: 1; min-width: 200px;"><input type="text" id="publisher-name" class="input-admin" placeholder="Nome" required></div>
+                        <div style="flex: 1; min-width: 150px;"><input type="text" id="publisher-country" class="input-admin" placeholder="País" required></div>
                         <div style="flex: 100%;"><button type="submit" class="btn btn-primary">Salvar Publicadora</button></div>
                     </form>
                 </div>
                 <table class="data-table">
                     <thead><tr><th>ID</th><th>Nome</th><th>País</th><th>Ações</th></thead>
-                    <tbody id="tbody-news"></tbody>
+                    <tbody id="tbody-publishers"></tbody>
                 </table>
             </div>
 
