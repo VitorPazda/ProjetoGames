@@ -2,7 +2,7 @@ const { DataTypes } = require('sequelize');
 const sequelize = require('../config/database');
 
 const Publisher = sequelize.define('Publisher', {
-    idPublisher: {
+    id: {
         type:   DataTypes.INTEGER,
         primaryKey:     true,
         autoIncrement: true,

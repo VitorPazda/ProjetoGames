@@ -81,7 +81,7 @@ async function loadGames() {
         // Usamos template literal para montar o HTML de cada linha da tabela
         tbody.innerHTML = data.map(g => `
             <tr>
-                <td>${g.idGame}</td>
+                <td>${g.id}</td>
                 <td>${g.title}</td>
                 <td>${g.description}</td>
                 <td>${g.genre}</td>
@@ -90,7 +90,7 @@ async function loadGames() {
                          style="height: 50px; width: 70px; object-fit: cover; border-radius: 4px; border: 1px solid #e2e8f0;">
                 </td>
                 <td>
-                    <button onclick="deleteGame(${g.idGame})"
+                    <button onclick="deleteGame(${g.id})"
                             style="color:#ef4444; border-color:#ef4444;"
                             class="btn btn-outline btn-sm">
                         Excluir
@@ -151,9 +151,9 @@ document.getElementById('form-formations').addEventListener('submit', async (e) 
  * deleteFormation — exclui uma formação pelo ID.
  * Chamado pelo botão "Excluir" em cada linha da tabela.
  */
-async function deleteGame(idGame) {
+async function deleteGame(id) {
     if (confirm('Tem certeza que deseja excluir este jogo?')) {
-        await api.delete(`/game/${idGame}`);
+        await api.delete(`/game/${id}`);
         loadGames(); // Atualiza a tabela após excluir
     }
 }
@@ -169,11 +169,11 @@ async function loadPublishers() {
         const { data } = await axios.get(`${API_URL}/publisher`);
         document.getElementById('tbody-news').innerHTML = data.map(p => `
             <tr>
-                <td>${p.idPublisher}</td>
+                <td>${p.id}</td>
                 <td>${p.name}</td>
                 <td>${p.country}</td>
                 <td>
-                    <button onclick="deletePublisher(${p.idPublisher})"
+                    <button onclick="deletePublisher(${p.id})"
                             style="color:#ef4444; border-color:#ef4444;"
                             class="btn btn-outline btn-sm">
                         Excluir
@@ -210,9 +210,9 @@ document.getElementById('form-news').addEventListener('submit', async (e) => {
     loadPublishers();
 });
 
-async function deletePublisher(idPublisher) {
+async function deletePublisher(id) {
     if (confirm('Tem certeza que deseja excluir esta publicadora?')) {
-        await api.delete(`/publisher/${idPublisher}`);
+        await api.delete(`/publisher/${id}`);
         loadPublishers();
     }
 }
