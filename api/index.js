@@ -23,6 +23,7 @@ const authRoutes      = require('./src/routes/authRoutes');
 const gameRoutes        = require('./src/routes/gameRoutes');
 const releaseRoutes     = require('./src/routes/releaseRoutes');
 const publisherRoutes   = require('./src/routes/publisherRoutes');
+const studioRoutes      = require('./src/routes/studioRoutes');
 // ─── Criação do App Express ──────────────────────────────────────────────────
 
 const app = express();
@@ -46,6 +47,7 @@ app.use(authRoutes);       // POST /login
 app.use(gameRoutes);        // GET/POST/DELETE /formations
 app.use(releaseRoutes);        // GET/POST/DELETE /formations
 app.use(publisherRoutes);        // GET/POST/DELETE /formations
+app.use(studioRoutes);        // GET/POST/DELETE /formations
 
 // ─── Porta do Servidor ────────────────────────────────────────────────────────
 
