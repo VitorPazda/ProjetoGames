@@ -263,7 +263,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // ── 5.2 Releases ───────────────────────────────────────────────────
     axios.get(`${API_URL}/release`)
         .then(resposta => {
-            const container = document.getElementById('news-container-inner');
+            const container = document.getElementById('releases-container-inner');
             const dados     = resposta.data;
 
             container.innerHTML = '';
