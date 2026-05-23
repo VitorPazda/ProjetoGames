@@ -2,7 +2,7 @@ const { DataTypes } = require('sequelize');
 const sequelize = require('../config/database');
 
 const Release = sequelize.define('Releases', {
-    idRelease: {
+    id: {
         type:   DataTypes.INTEGER,
         primaryKey:     true,
         autoIncrement: true,
