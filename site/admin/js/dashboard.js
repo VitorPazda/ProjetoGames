@@ -253,11 +253,6 @@ async function deleteEvent(id) {
 }
 
 // ─── Módulo: Studios ────────────────────────────────────────────────────────
-
-/**
- * loadNews — busca as notícias e exibe na tabela com thumbnail da imagem.
- * A image_url agora é um caminho relativo servido pela API (ex: /uploads/news/foto.jpg).
- */
 async function loadStudios() {
     try {
         const { data } = await axios.get(`${API_URL}/studio`);
