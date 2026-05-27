@@ -67,7 +67,7 @@ sequelize.sync({ force: false }).then(async () => {
     const User   = require('./src/models/User');
     const bcrypt = require('bcrypt');
 
-    const adminExistente = await User.findOne({ where: { email: 'admin@codeschool.edu.br' } });
+    const adminExistente = await User.findOne({ where: { email: 'admin@gameportal.com.br' } });
 
     if (!adminExistente) {
         // bcrypt.hash() criptografa a senha antes de salvar no banco.
