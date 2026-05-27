@@ -21,6 +21,6 @@ routes.get('/studio', StudioController.index);
  * passe na recepção (authMiddleware) e verifique a identidade do usuário".
  */
 routes.post('/studio', authMiddleware, StudioController.store);
-routes.delete('/studio/:id', StudioController.destroy);
+routes.delete('/studio/:id', authMiddleware, StudioController.destroy);
 
 module.exports = routes;

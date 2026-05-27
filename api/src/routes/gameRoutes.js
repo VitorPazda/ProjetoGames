@@ -20,6 +20,6 @@ routes.get('/game', GameController.index);
 // Apenas usuários que passarem na checagem do Token poderão injetar ou apagar notícias.
 // upload.single('image') → processa UM arquivo cujo campo se chama "image" no FormData.
 routes.post('/game', authMiddleware, upload.single('image'), GameController.store);
-routes.delete('/game/:id', GameController.destroy);
+routes.delete('/game/:id', authMiddleware, GameController.destroy);
 
 module.exports = routes;

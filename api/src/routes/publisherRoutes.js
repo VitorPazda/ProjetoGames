@@ -21,6 +21,6 @@ routes.get('/publisher', PublisherController.index);
  * passe na recepção (authMiddleware) e verifique a identidade do usuário".
  */
 routes.post('/publisher', authMiddleware, PublisherController.store);
-routes.delete('/publisher/:id', PublisherController.destroy);
+routes.delete('/publisher/:id', authMiddleware, PublisherController.destroy);
 
 module.exports = routes;

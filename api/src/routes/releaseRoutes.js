@@ -21,6 +21,6 @@ routes.get('/release', ReleaseController.index);
  * passe na recepção (authMiddleware) e verifique a identidade do usuário".
  */
 routes.post('/release', authMiddleware, ReleaseController.store);
-routes.delete('/release/:id', ReleaseController.destroy);
+routes.delete('/release/:id', authMiddleware, ReleaseController.destroy);
 
 module.exports = routes;
