@@ -76,11 +76,11 @@ sequelize.sync({ force: false }).then(async () => {
 
         await User.create({
             name:     'Administrador',
-            email:    'admin@codeschool.edu.br',
+            email:    'admin@gameportal.com.br',
             password: senhaCriptografada,
         });
 
-        console.log('👤 Admin padrão criado: admin@codeschool.edu.br / admin123');
+        console.log('👤 Admin padrão criado: admin@gameportal.com.br / admin123');
     }
 
     // ── Inicia o servidor na porta definida ───────────────────────────────

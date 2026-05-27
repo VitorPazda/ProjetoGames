@@ -66,7 +66,7 @@ module.exports = {
 
     /**
      * destroy — remove uma notícia pelo ID passado na URL
-     * Rota:  DELETE /news/:id
+     * Rota:  DELETE /game/:id
      *
      * Além de apagar o registro do banco, também removemos o arquivo
      * de imagem do disco para não acumular arquivos órfãos.
